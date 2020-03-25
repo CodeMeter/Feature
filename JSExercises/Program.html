@@ -1,0 +1,35 @@
+<!DOCTYPE >
+<html>
+  <head> </head>
+  <body>
+    <div>
+      <ul>
+        <li data-time="6:20">Flex Videos</li>
+        <li data-time="7:20">Redux Videos</li>
+        <li data-time="7:20">Flex Videos</li>
+        <li data-time="7:20">Redux Videos</li>
+        <li data-time="8:10">Flex Videos</li>
+        <li data-time="7:20">Flex Videos</li>
+        <li data-time="9:10">Flex Videos</li>
+        <li data-time="7:20">Redux Videos</li>
+        <li data-time="7:20">Flex Videos</li>
+        <li data-time="7:20">Flex Videos</li>
+      </ul>
+    </div>
+    <script>
+      function calculateVideoTime(element, videoDesc) {
+        return Array.from(document.getElementsByTagName(element))
+          .filter(newlist => newlist.innerText === videoDesc)
+          .map(item => item.dataset.time.split(":"))
+          .map(timecode => parseInt(timecode[0] * 60) + parseInt(timecode[1]))
+          .reduce((a, b) => a + b);
+      }
+
+      const reduxTime = calculateVideoTime("li", "Redux Videos");
+      const flexTime = calculateVideoTime("li", "Flex Videos");
+
+      console.log(`redux time of videos are ${reduxTime}`);
+      console.log(`flex time of videos are ${flexTime}`);
+    </script>
+  </body>
+</html>
